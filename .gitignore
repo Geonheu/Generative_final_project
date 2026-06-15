@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Large binary / model weights
+*.pth
+*.bin
+*.ckpt
+*.npy
+*.npz
+
+# Data files (large pkl)
+MotionBERT/data/
+c-MAS/data_loaders/nba/Mean.npy
+c-MAS/data_loaders/nba/Std.npy
+
+# Pretrained model checkpoints
+c-MAS/save/
+MotionBERT/save/
+MotionBERT/params/
+
+# Extracted features & MLP checkpoints (large)
+MotionBERT/view_attn_out/features/
+MotionBERT/view_attn_out/logits/
+MotionBERT/view_attn_out/checkpoints/
+MotionBERT/view_attn_out/checkpoints_feat/
+MotionBERT/view_attn_out/checkpoints_logit_combo/
+MotionBERT/view_attn_out/checkpoints_mixed/
+
+# Pipeline outputs (generated npy / pkl / vis)
+c-MAS/pipeline_out/
+c-MAS/pipeline_train_out/
+
+# TensorBoard / training logs
+MotionBERT/output/
+MotionBERT/vis_output/
+_timing_test/
+_eval_tmp/
+
+# Misc
+*.DS_Store
+test.txt
