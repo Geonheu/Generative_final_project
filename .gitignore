@@ -11,6 +11,7 @@ __pycache__/
 *.npz
 
 # Data files (large pkl)
+data/
 MotionBERT/data/
 c-MAS/data_loaders/nba/Mean.npy
 c-MAS/data_loaders/nba/Std.npy
