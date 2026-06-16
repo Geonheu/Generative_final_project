@@ -13,6 +13,8 @@ import numpy as np
 import torch, torch.nn as nn, torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+
 SETS = ['setA', 'setB', 'setC', 'setD']
 PART_A_TEST_SUBJECTS = [1, 9, 25, 35]
 PART_B_TEST_SUBJECTS = [3, 10, 21, 37]
@@ -22,7 +24,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--sets',           nargs='+', default=SETS)
     parser.add_argument('--hrnet_pkl',      default='data/action/ntu60_hrnet.pkl')
-    parser.add_argument('--gt3d_pkl',       default='/home/navygrace/minji/ntu60_3danno.pkl')
+    parser.add_argument('--gt3d_pkl',       default=os.path.join(_THIS_DIR, '..', '..', 'kinect', 'data', 'ntu60_3danno.pkl'))
     parser.add_argument('--train_feat_dir', default='data/mixed_features')
     parser.add_argument('--gt_val_dir',     default='data/gt_val_features')
     parser.add_argument('--save_dir',       default='checkpoint/gt_split_mlp')

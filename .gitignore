@@ -1,1 +1,43 @@
-kinect/
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+
+# ── Shared models (final_project/models/) ──────────────────────────────────
+# Pretrained backbone / diffusion checkpoints — large, download separately
+models/MotionBERT/save/
+models/MotionBERT/params/
+models/cMAS/save/
+
+# ── kinect/ pipeline ─────────────────────────────────────────────────────
+# Raw NTU60 ground-truth data and generated multi-view pkls/features
+kinect/data/
+kinect/motionbert_har/data/
+kinect/motionbert_har/lifting_outputs/
+kinect/motionbert_har/view_attn_out/logits/
+kinect/motionbert_har/view_attn_out/features/
+kinect/motionbert_har/view_attn_out/checkpoints_*/
+kinect/cmas_pipeline/pipeline_out/cmas_3d/
+kinect/cmas_pipeline/pipeline_out/pkls/
+kinect/cmas_pipeline/pipeline_train_out/cmas_3d/
+kinect/cmas_pipeline/pipeline_train_out/pkls/
+kinect/cmas_pipeline/results/
+
+# ── hrnet/ pipeline ──────────────────────────────────────────────────────
+hrnet/**/data/
+hrnet/**/checkpoint/
+hrnet/cmas_pipeline/ntu_test_60class_*/
+hrnet/cmas_pipeline/results/
+hrnet/motionbert_har/data/mixed_features/
+hrnet/motionbert_har/data/gt_val_features/
+
+# ── Generic large binary/data files ─────────────────────────────────────
+*.pth
+*.bin
+*.pkl
+*.npz
+
+# Small tracked assets that would otherwise be caught by extension rules above
+!models/cMAS/data_loaders/nba/*.npy

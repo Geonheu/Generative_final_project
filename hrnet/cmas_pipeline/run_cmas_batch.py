@@ -7,10 +7,13 @@ Output: ntu_test_60class_3d/    (cMAS 3D output .npy per sample)
 import os
 import glob
 
+_THIS_DIR  = os.path.dirname(os.path.abspath(__file__))
+_CMAS_ROOT = os.path.normpath(os.path.join(_THIS_DIR, '..', '..', 'models', 'cMAS'))
+
 input_dir   = "ntu_test_60class_nba"
 output_dir  = "ntu_test_60class_3d"
-cmas_dir    = "."
-model_path  = "save/yoga_diffusion_model/checkpoint_200000.pth"
+cmas_dir    = _CMAS_ROOT
+model_path  = os.path.join(_CMAS_ROOT, "save/yoga_diffusion_model/checkpoint_200000.pth")
 motions_dir = os.path.join(cmas_dir, "dataset/nba/motions")
 
 os.makedirs(output_dir, exist_ok=True)

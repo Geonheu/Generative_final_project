@@ -4,11 +4,15 @@ train_{set}.npz: view0=HRNet 2D, view1+=GT 3D projection  (xsub_train, 40091 sam
 test_{set}.npz:  view0=HRNet 2D, view1+=cMAS projection   (xsub_val,   16487 samples)
 Output shape: (N, V, 8704)
 """
-import os, argparse
+import os, sys, argparse
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_MB_ROOT  = os.path.normpath(os.path.join(_THIS_DIR, '..', '..', 'models', 'MotionBERT'))
+sys.path.insert(0, _MB_ROOT)
 
 from lib.utils.tools import get_config
 from lib.utils.learning import load_backbone
@@ -18,11 +22,11 @@ from lib.data.dataset_multiview import MixedViewTrainDataset, MixedViewTestDatas
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--sets', nargs='+', default=['setA', 'setB', 'setC', 'setD'])
-    parser.add_argument('--config',        default='configs/action/MB_ft_NTU60_xsub.yaml')
-    parser.add_argument('--backbone_ckpt', default='checkpoint/action/FT_MB_release_MB_ft_NTU60_xsub/best_epoch.bin')
-    parser.add_argument('--gt3d_pkl',      default='/home/navygrace/minji/ntu60_3danno.pkl')
+    parser.add_argument('--config',        default=os.path.join(_MB_ROOT, 'configs/action/MB_ft_NTU60_xsub.yaml'))
+    parser.add_argument('--backbone_ckpt', default=os.path.join(_MB_ROOT, 'save/MB_ft_NTU60_xsub/best_epoch.bin'))
+    parser.add_argument('--gt3d_pkl',      default=os.path.join(_THIS_DIR, '..', '..', 'kinect', 'data', 'ntu60_3danno.pkl'))
     parser.add_argument('--hrnet_pkl',     default='data/action/ntu60_hrnet.pkl')
-    parser.add_argument('--cmas_dir',      default='/home/navygrace/minji/c-MAS/ntu_test_60class_multiview_{set_name}')
+    parser.add_argument('--cmas_dir',      default=os.path.join(_THIS_DIR, '..', 'cmas_pipeline', 'ntu_test_60class_multiview_{set_name}'))
     parser.add_argument('--out_dir',       default='data/mixed_features')
     parser.add_argument('--batch_size',    type=int, default=64)
     parser.add_argument('--gpu',           default='0')

@@ -8,11 +8,14 @@ import numpy as np
 import torch, torch.nn as nn, torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 
+_THIS_DIR  = os.path.dirname(os.path.abspath(__file__))
+_CMAS_PIPELINE_OUT = os.path.join(_THIS_DIR, '..', 'cmas_pipeline')
+
 CMAS_DIRS = {
-    'setA': '/home/navygrace/minji/c-MAS/ntu_test_60class_multiview_setA',
-    'setB': '/home/navygrace/minji/c-MAS/ntu_test_60class_multiview_setB',
-    'setC': '/home/navygrace/minji/c-MAS/ntu_test_60class_multiview_setC',
-    'setD': '/home/navygrace/minji/c-MAS/ntu_test_60class_multiview_setD',
+    'setA': os.path.join(_CMAS_PIPELINE_OUT, 'ntu_test_60class_multiview_setA'),
+    'setB': os.path.join(_CMAS_PIPELINE_OUT, 'ntu_test_60class_multiview_setB'),
+    'setC': os.path.join(_CMAS_PIPELINE_OUT, 'ntu_test_60class_multiview_setC'),
+    'setD': os.path.join(_CMAS_PIPELINE_OUT, 'ntu_test_60class_multiview_setD'),
 }
 
 

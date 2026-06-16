@@ -6,11 +6,15 @@ Output: data/gt_val_features/{set_name}.npz  shape=(N, V, 8704)
   - labels:   (N,)
   - frame_dirs: (N,)  for subject-based split
 """
-import os, argparse, pickle, re
+import os, sys, argparse, pickle, re
 import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
+
+_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+_MB_ROOT  = os.path.normpath(os.path.join(_THIS_DIR, '..', '..', 'models', 'MotionBERT'))
+sys.path.insert(0, _MB_ROOT)
 
 from lib.utils.tools import get_config
 from lib.utils.learning import load_backbone
@@ -20,9 +24,9 @@ from lib.data.dataset_multiview import GTValDataset, ANGLE_SETS
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--sets',          nargs='+', default=['setA', 'setB', 'setC', 'setD'])
-    parser.add_argument('--config',        default='configs/action/MB_ft_NTU60_xsub.yaml')
-    parser.add_argument('--backbone_ckpt', default='checkpoint/action/FT_MB_release_MB_ft_NTU60_xsub/best_epoch.bin')
-    parser.add_argument('--gt3d_pkl',      default='/home/navygrace/minji/ntu60_3danno.pkl')
+    parser.add_argument('--config',        default=os.path.join(_MB_ROOT, 'configs/action/MB_ft_NTU60_xsub.yaml'))
+    parser.add_argument('--backbone_ckpt', default=os.path.join(_MB_ROOT, 'save/MB_ft_NTU60_xsub/best_epoch.bin'))
+    parser.add_argument('--gt3d_pkl',      default=os.path.join(_THIS_DIR, '..', '..', 'kinect', 'data', 'ntu60_3danno.pkl'))
     parser.add_argument('--hrnet_pkl',     default='data/action/ntu60_hrnet.pkl')
     parser.add_argument('--out_dir',       default='data/gt_val_features')
     parser.add_argument('--batch_size',    type=int, default=64)
