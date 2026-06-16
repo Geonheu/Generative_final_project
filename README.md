@@ -236,7 +236,7 @@ python make_table.py --mode final --no_plot  # Text output only (no figure saved
 
 | Item | Path | Note |
 |---|---|---|
-| NTU60 3D raw data | `/workspace/clone_model/data/ntu60_3danno.pkl` | Shared |
+| NTU60 3D raw data | `/data/ntu60_3danno.pkl` | Shared |
 | GT projection data (val, ×8 angles) | `MotionBERT/data/action/ntu60_gt_*.pkl` | Symlink (~1.1GB each) |
 | c-MAS generated data (val, ×7 angles) | `MotionBERT/data/action/ntu60_cmas_*.pkl` | Included (~8MB each) |
 | c-MAS generated data (train, ×7 angles) | `MotionBERT/data/action/ntu60_cmas_train_*.pkl` | Included (~8MB each) |
