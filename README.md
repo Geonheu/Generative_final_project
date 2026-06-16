@@ -13,17 +13,9 @@ HRNet 2D keypoints → MotionBERT 3D lifting → Azimuth rotation → Virtual 2D
 ## Repository Structure
 
 ```text
-MotionBERT/
+lifting_comparison/
 ├── generate_motionbert_baseline_pkls.py      # Generate lifted, rotated, and re-projected virtual-view pkl files
-├── eval_motionbert_multiview_baseline.py     # Evaluate multi-view HAR with late-fusion logit averaging
-├── lib/
-│   ├── data/                                 # Dataset loading and preprocessing utilities
-│   ├── model/                                # MotionBERT / ActionNet model definitions
-│   └── utils/                                # Common utility functions
-├── checkpoint/
-│   └── action/                               # Pretrained ActionNet / MotionBERT HAR checkpoints
-└── data/
-    └── motion3d/                             # NTU60 HRNet input pkl and generated virtual-view pkl files
+└── eval_motionbert_multiview_baseline.py     # Evaluate multi-view HAR with late-fusion logit averaging
 ```
 
 ## Method
